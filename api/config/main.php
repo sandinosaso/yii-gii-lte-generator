@@ -46,7 +46,10 @@ return [
                 [
                     'class' => 'yii\rest\UrlRule', 
                     'controller' => 'v1/providers',
+<<<<<<< HEAD
                     'controller' => 'v1/pedidos',
+=======
+>>>>>>> 71ae2544fbf0aadcb1f2ba28b7d38922056fceac
                     'tokens' => [
                         '{id}' => '<id:\\w+>'
                     ]
