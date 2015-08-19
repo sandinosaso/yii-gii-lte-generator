@@ -74,6 +74,11 @@ class SiteController extends Controller
         }
     }
 
+    public function actionRegister()
+    {
+        return $this->render('signup');
+    }
+
     public function actionLogout()
     {
         Yii::$app->user->logout();
