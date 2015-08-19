@@ -50,3 +50,15 @@ environments/            contains environment-based overrides
 tests                    contains various tests for the advanced application
     codeception/         contains tests developed with Codeception PHP Testing Framework
 ```
+
+
+Install
+-------
+
+1) git clone git@github.com:sandinosaso/yii-gii-lte-generator.git
+
+2) In project root folder run: ./init (say 'No' when it ask for override files)
+
+3) In project root folder run: composer install
+
+4) Run first migration to create users table: ./yii migrate 1
