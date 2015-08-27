@@ -1,34 +1,38 @@
 <?php
 use yii\bootstrap\Nav;
 
+$profile = isset(Yii::$app->user->identity->profile) ? Yii::$app->user->identity->profile : null;
+
 ?>
 <aside class="main-sidebar">
 
     <section class="sidebar">
+        
+        <?php if (!Yii::$app->user->getIsGuest()) :?>
+            <!-- Sidebar user panel -->
+            <div class="user-panel">
+                <div class="pull-left image">
+                    <img src="http://gravatar.com/avatar/<?= isset($profile) ? $profile->gravatar_id : -1 ?>?s=160" class="img-circle" alt="User Image"/>
+                </div>
+                <div class="pull-left info">
+                    <p><?php if (!Yii::$app->user->getIsGuest()) echo Yii::$app->user->identity->username; ?></p>
 
-        <!-- Sidebar user panel -->
-        <div class="user-panel">
-            <div class="pull-left image">
-                <img src="<?= $directoryAsset ?>/img/user2-160x160.jpg" class="img-circle" alt="User Image"/>
+                    <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                </div>
             </div>
-            <div class="pull-left info">
-                <p><?php if (!Yii::$app->user->getIsGuest()) echo Yii::$app->user->identity->username; ?></p>
 
-                <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-            </div>
-        </div>
-
-        <!-- search form -->
-        <form action="#" method="get" class="sidebar-form">
-            <div class="input-group">
-                <input type="text" name="q" class="form-control" placeholder="Search..."/>
-              <span class="input-group-btn">
-                <button type='submit' name='search' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i>
-                </button>
-              </span>
-            </div>
-        </form>
+            <!-- search form -->
+            <form action="#" method="get" class="sidebar-form">
+                <div class="input-group">
+                    <input type="text" name="q" class="form-control" placeholder="Search..."/>
+                  <span class="input-group-btn">
+                    <button type='submit' name='search' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i>
+                    </button>
+                  </span>
+                </div>
+            </form>
         <!-- /.search form -->
+        <?php endif; ?>
 
         <?=
         Nav::widget(
@@ -38,6 +42,7 @@ use yii\bootstrap\Nav;
                 'items' => [
                     '<li class="header">Menu Yii2</li>',
                     ['label' => '<i class="fa fa-users"></i><span>Proveedores</span>', 'url' => ['/providers']],
+                    ['label' => '<i class="fa fa-users"></i><span>Profile</span>', 'url' => ['/user/profile/show','id'=>Yii::$app->user->identity->id], 'visible' =>!Yii::$app->user->isGuest],
                     ['label' => '<i class="fa fa-file-code-o"></i><span>Gii</span>', 'url' => ['/gii']],
                     ['label' => '<i class="fa fa-dashboard"></i><span>Debug</span>', 'url' => ['/debug']],
                     [

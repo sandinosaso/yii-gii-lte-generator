@@ -3,6 +3,10 @@
 namespace backend\models;
 
 use Yii;
+use yii\db\Expression;
+use yii\behaviors\TimestampBehavior;
+use yii\helpers\ArrayHelper;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "country".
@@ -11,8 +15,17 @@ use Yii;
  * @property string $name
  * @property integer $population
  */
-class Country extends \yii\db\ActiveRecord
+class Country extends ActiveRecord
 {
+    public function behaviors()
+    {
+
+        return ArrayHelper::merge(parent::behaviors(),        
+            [
+                TimestampBehavior::className(),
+            ]
+        );
+    }
     /**
      * @inheritdoc
      */

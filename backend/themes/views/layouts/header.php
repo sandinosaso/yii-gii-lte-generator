@@ -5,6 +5,7 @@ use yii\bootstrap\NavBar;
 
 /* @var $this \yii\web\View */
 /* @var $content string */
+$profile = isset($this->params['profile']) ? $this->params['profile'] : null;
 ?>
 
 <header class="main-header">
@@ -18,6 +19,8 @@ use yii\bootstrap\NavBar;
         </a>
 
         <div class="navbar-custom-menu">
+
+            <?php if (!Yii::$app->user->getIsGuest()) :?>
 
             <ul class="nav navbar-nav">
 
@@ -228,16 +231,17 @@ use yii\bootstrap\NavBar;
                     </ul>
                 </li>
                 <!-- User Account: style can be found in dropdown.less -->
-
+                
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <img src="<?= $directoryAsset ?>/img/user2-160x160.jpg" class="user-image" alt="User Image"/>
+                        <!-- <img src="<?= $directoryAsset ?>/img/user2-160x160.jpg" class="user-image" alt="User Image"/> -->
+                        <img src="http://gravatar.com/avatar/<?= isset($profile) ?  $profile->gravatar_id : -1?>?s=160" class="user-image" alt="User Image"/>
                         <span class="hidden-xs"><?php if (!Yii::$app->user->getIsGuest()) echo Yii::$app->user->identity->username; ?></span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- User image -->
                         <li class="user-header">
-                            <img src="<?= $directoryAsset ?>/img/user2-160x160.jpg" class="img-circle"
+                            <img src="http://gravatar.com/avatar/<?= isset($profile) ? $profile->gravatar_id : -1 ?>?s=160" class="img-circle"
                                  alt="User Image"/>
 
                             <p>
@@ -278,6 +282,8 @@ use yii\bootstrap\NavBar;
                     <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
                 </li>
             </ul>
+
+            <?php endif ?>
         </div>
     </nav>
 </header>

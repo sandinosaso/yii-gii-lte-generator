@@ -11,17 +11,24 @@ return [
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
-    'modules' => [],
+    'modules' => [
+         'user' => [
+                'class' => 'dektrium\user\Module',
+            ],
+    ],
     'components' => [
-        'user' => [
+        /*'user' => [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,
-        ],
+        ],*/
         'view' => [
             'theme' => [
                 'pathMap' => [
                     '@backend/views' => [
                         '@backend/themes/views',
+                    ],
+                    '@dektrium/user/views' => [
+                        '@backend/themes/views/user'
                     ]
                 ]
             ]
