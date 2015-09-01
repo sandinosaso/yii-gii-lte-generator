@@ -43,15 +43,15 @@ return [
             'enableStrictParsing' => true,
             'showScriptName' => false,
             'rules' => [
-                [
-                    'class' => 'yii\rest\UrlRule', 
-                    'controller' => 'v1/providers',
-                    'tokens' => [
-                        '{id}' => '<id:\\w+>'
-                    ]
-                    
-                ]
-            ],        
+                    'HEAD <apiv:v\d+>/<controller:\w+>'              => '<apiv>/<controller>/index',
+                    'GET <apiv:v\d+>/<controller:\w+>'               => '<apiv>/<controller>/index',
+                    'HEAD <apiv:v\d+>/<controller:\w+>/<id:(.)+>'    => '<apiv>/<controller>/view',
+                    'GET <apiv:v\d+>/<controller:\w+>/<id:(.)+>'     => '<apiv>/<controller>/view',
+                    'POST <apiv:v\d+>/<controller:\w+>/<id:(.)+>'    => '<apiv>/<controller>/create', 
+                    'PUT <apiv:v\d+>/<controller:\w+>/<id:(.)+>'     => '<apiv>/<controller>/update',
+                    'PATCH <apiv:v\d+>/<controller:\w+>/<id:(.)+>'   => '<apiv>/<controller>/update',
+                    'DELETE <apiv:v\d+>/<controller:\w+>/<id:(.)+>'  => '<apiv>/<controller>/delete',                
+            ]       
         ]
     ],
     'params' => $params,

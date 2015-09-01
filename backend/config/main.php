@@ -14,6 +14,7 @@ return [
     'modules' => [
          'user' => [
                 'class' => 'dektrium\user\Module',
+                'admins' => ['sandinosaso']
             ],
     ],
     'components' => [
@@ -36,7 +37,7 @@ return [
         'assetManager' => [
             'bundles' => [
                 'dmstr\web\AdminLteAsset' => [
-                    'skin' => 'skin-blue',
+                    'skin' => 'skin-green',
                 ],
             ],
         ],
@@ -53,6 +54,18 @@ return [
                 'application/json' => 'yii\web\JsonParser',
             ]
         ],*/
+        'urlManager' => [
+            'class' => 'yii\web\UrlManager',
+            // Disable index.php
+            'showScriptName' => false,
+            // Disable r= routes
+            'enablePrettyUrl' => true,
+            /*'rules' => array(
+                    '<controller:\w+>/<id:\d+>' => '<controller>/view',
+                    '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
+                    '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
+            ),*/
+        ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [

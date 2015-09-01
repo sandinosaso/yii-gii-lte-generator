@@ -9,6 +9,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
+use backend\filters\AccessRule;
 use yii\helpers\ArrayHelper;
 
 /**
@@ -30,17 +31,24 @@ class CountryController extends Controller
 
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['index', 'view', 'update', 'admin'],
+                'ruleConfig' => [
+                    'class' => AccessRule::className(),
+                ],
                 'rules' => [
                     [
+                        'actions' => ['index'],
                         'allow' => true,
-                        'actions' => ['view'],
-                        'roles' => ['?'],
+                        'roles' => ['admin'],
                     ],
                     [
+                        'actions' => ['view'],
                         'allow' => true,
-                        'actions' => ['index','update', 'admin','view'],
-                        'roles' => ['@'],
+                        'roles' => ['?', '@', 'admin'],
+                    ],
+                    [
+                        'actions' => ['update', 'create'],
+                        'allow' => true,
+                        'roles' => ['?', '@', 'admin'],
                     ],
                 ],
             ],

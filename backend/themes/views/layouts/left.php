@@ -3,6 +3,7 @@ use yii\bootstrap\Nav;
 
 $profile = isset(Yii::$app->user->identity->profile) ? Yii::$app->user->identity->profile : null;
 
+if (isset(Yii::$app->user->identity)) :
 ?>
 <aside class="main-sidebar">
 
@@ -34,7 +35,7 @@ $profile = isset(Yii::$app->user->identity->profile) ? Yii::$app->user->identity
         <!-- /.search form -->
         <?php endif; ?>
 
-        <?=
+        <?=        
         Nav::widget(
             [
                 'encodeLabels' => false,
@@ -42,7 +43,7 @@ $profile = isset(Yii::$app->user->identity->profile) ? Yii::$app->user->identity
                 'items' => [
                     '<li class="header">Menu Yii2</li>',
                     ['label' => '<i class="fa fa-users"></i><span>Proveedores</span>', 'url' => ['/providers']],
-                    ['label' => '<i class="fa fa-users"></i><span>Profile</span>', 'url' => ['/user/profile/show','id'=>Yii::$app->user->identity->id], 'visible' =>!Yii::$app->user->isGuest],
+                    ['label' => '<i class="fa fa-users"></i><span>Profile</span>', 'url' => ['/user/profile/show','id'=>isset(Yii::$app->user->identity) ? Yii::$app->user->identity->id : -1], 'visible' =>!Yii::$app->user->isGuest],
                     ['label' => '<i class="fa fa-file-code-o"></i><span>Gii</span>', 'url' => ['/gii']],
                     ['label' => '<i class="fa fa-dashboard"></i><span>Debug</span>', 'url' => ['/debug']],
                     [
@@ -88,3 +89,4 @@ $profile = isset(Yii::$app->user->identity->profile) ? Yii::$app->user->identity
     </section>
 
 </aside>
+<?php endif; ?>

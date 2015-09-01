@@ -1,9 +1,11 @@
 <?php
+
 namespace backend\filters;
 
-use yii\filters\AccessRule;
+use Yii;
+use yii\filters\AccessRule as AccessRuleNativa;
 
-class AccessFilter extends AccessRule
+class AccessRule extends AccessRuleNativa
 {
 
     /** @inheritdoc */
