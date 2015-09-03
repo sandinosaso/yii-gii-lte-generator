@@ -5,21 +5,22 @@ namespace backend\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use backend\models\Country;
+use backend\models\Cities;
 
 /**
- * CountrySearch represents the model behind the search form about `backend\models\Country`.
+ * CitiesSearch represents the model behind the search form about `backend\models\Cities`.
  */
-class CountrySearch extends Country
+class CitiesSearch extends Cities
 {
+    // add the public attributes that will be used to store the data to be search
+    public $country;
     /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['code', 'name'], 'safe'],
-            [['population', 'created_at', 'updated_at'], 'integer'],
+            [['country_code', 'city_code', 'city_name', 'country'], 'safe'],
         ];
     }
 
@@ -41,11 +42,19 @@ class CountrySearch extends Country
      */
     public function search($params)
     {
-        $query = Country::find()->with('cities');
+        $query = Cities::find();//->with('country');
+
+        $query->joinWith(['country']);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
+
+        // Lets do the same with country now
+        $dataProvider->sort->attributes['country'] = [
+            'asc' => ['country.name' => SORT_ASC],
+            'desc' => ['country.name' => SORT_DESC],
+        ];
 
         $this->load($params);
 
@@ -55,14 +64,11 @@ class CountrySearch extends Country
             return $dataProvider;
         }
 
-        $query->andFilterWhere([
-            'population' => $this->population,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
-        ]);
+        $query->andFilterWhere(['like', 'country_code', $this->country_code])
+            ->andFilterWhere(['like', 'city_code', $this->city_code])
+            ->andFilterWhere(['like', 'city_name', $this->city_name]);
 
-        $query->andFilterWhere(['like', 'code', $this->code])
-            ->andFilterWhere(['like', 'name', $this->name]);
+        $query->andFilterWhere(['like', 'country.name', $this->country]);
 
         return $dataProvider;
     }

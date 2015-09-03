@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel backend\models\CountrySearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Countries';
+$this->title = Yii::t('core', 'Countries');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="country-index">
@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Country', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('core', 'Create Country'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -28,6 +28,19 @@ $this->params['breadcrumbs'][] = $this->title;
             'code',
             'name',
             'population',
+            'created_at',
+            'updated_at',
+            'cities.city_name',
+            [
+                'class' => 'yii\grid\DataColumn', // can be omitted, as it is the default
+                'value' => function ($data) {
+                    $nombres = [];
+                    foreach ($data->cities as $key => $city) {
+                        $nombres[] = $city->city_name;
+                    }
+                    return count($data->cities)>0 ? implode('-', $nombres) : '';
+                },
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

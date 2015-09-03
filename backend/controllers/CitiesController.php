@@ -3,16 +3,18 @@
 namespace backend\controllers;
 
 use Yii;
-use backend\models\Country;
-use backend\models\CountrySearch;
+use backend\models\Cities;
+use backend\models\CitiesSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\base\Exception;
+use yii\web\HttpException;
 
 /**
- * CountryController implements the CRUD actions for Country model.
+ * CitiesController implements the CRUD actions for Cities model.
  */
-class CountryController extends Controller
+class CitiesController extends Controller
 {
     public function behaviors()
     {
@@ -27,12 +29,12 @@ class CountryController extends Controller
     }
 
     /**
-     * Lists all Country models.
+     * Lists all Cities models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new CountrySearch();
+        $searchModel = new CitiesSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -42,7 +44,7 @@ class CountryController extends Controller
     }
 
     /**
-     * Displays a single Country model.
+     * Displays a single Cities model.
      * @param string $id
      * @return mixed
      */
@@ -54,25 +56,34 @@ class CountryController extends Controller
     }
 
     /**
-     * Creates a new Country model.
+     * Creates a new Cities model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Country();
+        $model = new Cities();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->code]);
-        } else {
+        try {
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['view', 'id' => $model->city_code]);
+            } else {
+                return $this->render('create', [
+                    'model' => $model,
+                ]);
+            }            
+        } catch (Exception $e) {
+            $model->addError('country_code', $e->getName());
+
             return $this->render('create', [
-                'model' => $model,
+                    'model' => $model,
             ]);
+            //throw new HttpException(500, $e->errorInfo);
         }
     }
 
     /**
-     * Updates an existing Country model.
+     * Updates an existing Cities model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param string $id
      * @return mixed
@@ -82,7 +93,7 @@ class CountryController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->code]);
+            return $this->redirect(['view', 'id' => $model->city_code]);
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -91,7 +102,7 @@ class CountryController extends Controller
     }
 
     /**
-     * Deletes an existing Country model.
+     * Deletes an existing Cities model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param string $id
      * @return mixed
@@ -104,15 +115,15 @@ class CountryController extends Controller
     }
 
     /**
-     * Finds the Country model based on its primary key value.
+     * Finds the Cities model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param string $id
-     * @return Country the loaded model
+     * @return Cities the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Country::findOne($id)) !== null) {
+        if (($model = Cities::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

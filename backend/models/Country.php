@@ -2,11 +2,8 @@
 
 namespace backend\models;
 
+use backend\models\BaseActiveRecord;
 use Yii;
-use yii\db\Expression;
-use yii\behaviors\TimestampBehavior;
-use yii\helpers\ArrayHelper;
-use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "country".
@@ -14,18 +11,13 @@ use yii\db\ActiveRecord;
  * @property string $code
  * @property string $name
  * @property integer $population
+ * @property integer $created_at
+ * @property integer $updated_at
+ *
+ * @property Cities[] $cities
  */
-class Country extends ActiveRecord
+class Country extends BaseActiveRecord
 {
-    public function behaviors()
-    {
-
-        return ArrayHelper::merge(parent::behaviors(),        
-            [
-                TimestampBehavior::className(),
-            ]
-        );
-    }
     /**
      * @inheritdoc
      */
@@ -41,7 +33,7 @@ class Country extends ActiveRecord
     {
         return [
             [['code', 'name'], 'required'],
-            [['population'], 'integer'],
+            [['population', 'created_at', 'updated_at'], 'integer'],
             [['code'], 'string', 'max' => 2],
             [['name'], 'string', 'max' => 52]
         ];
@@ -53,9 +45,34 @@ class Country extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'code' => 'Code',
-            'name' => 'Name',
-            'population' => 'Population',
+            'code' => Yii::t('core', 'Code'),
+            'name' => Yii::t('core', 'Name'),
+            'population' => Yii::t('core', 'Population'),
+            'created_at' => Yii::t('core', 'Created At'),
+            'updated_at' => Yii::t('core', 'Updated At'),
         ];
+    }
+
+    public function attributes()
+    {
+        // add related fields to searchable attributes
+        return array_merge(parent::attributes(), ['cities.city_name']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCities()
+    {
+        return $this->hasMany(Cities::className(), ['country_code' => 'code']);
+    }
+
+    /**
+     * @inheritdoc
+     * @return CountryQuery the active query used by this AR class.
+     */
+    public static function find()
+    {
+        return new CountryQuery(get_called_class());
     }
 }

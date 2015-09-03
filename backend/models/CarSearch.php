@@ -41,7 +41,7 @@ class CarSearch extends Car
      */
     public function search($params)
     {
-        $query = Car::find();
+        $query = Car::find()->with('country');
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
