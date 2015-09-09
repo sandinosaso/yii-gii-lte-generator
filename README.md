@@ -12,7 +12,7 @@ deploying the application in different environments.
 
 [![Latest Stable Version](https://poser.pugx.org/yiisoft/yii2-app-advanced/v/stable.png)](https://packagist.org/packages/yiisoft/yii2-app-advanced)
 [![Total Downloads](https://poser.pugx.org/yiisoft/yii2-app-advanced/downloads.png)](https://packagist.org/packages/yiisoft/yii2-app-advanced)
-[![Build Status](https://codeship.com/projects/101129)](https://codeship.com/projects/101129)
+[![Build Status](https://codeship.com/projects/e8466d80-37cc-0133-d28d-7214df95c63e/status?branch=master)](https://codeship.com/projects/e8466d80-37cc-0133-d28d-7214df95c63e/status?branch=master)
 
 DIRECTORY STRUCTURE
 -------------------
