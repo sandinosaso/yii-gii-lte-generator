@@ -47,11 +47,6 @@ class Cities extends \yii\db\ActiveRecord
         ];
     }
 
-    /* Getter for country name */
-/*    public function getCountryName() {
-        return $this->country->name;
-    }*/
-
     /**
      * @return \yii\db\ActiveQuery
      */

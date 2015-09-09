@@ -78,7 +78,6 @@ class CitiesController extends Controller
             return $this->render('create', [
                     'model' => $model,
             ]);
-            //throw new HttpException(500, $e->errorInfo);
         }
     }
 
