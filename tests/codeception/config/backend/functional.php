@@ -5,26 +5,14 @@ $_SERVER['SCRIPT_NAME'] = YII_BACKEND_TEST_ENTRY_URL;
 /**
  * Application configuration for backend functional tests
  */
-if (!YII_ENV_TEST) {
-	return yii\helpers\ArrayHelper::merge(
-	    require(YII_APP_BASE_PATH . '/common/config/main.php'),
-	    require(YII_APP_BASE_PATH . '/common/config/main-local.php'),
-	    require(YII_APP_BASE_PATH . '/backend/config/main.php'),
-	    require(YII_APP_BASE_PATH . '/backend/config/main-local.php'),
-	    require(dirname(__DIR__) . '/config.php'),
-	    require(dirname(__DIR__) . '/functional.php'),
-	    require(__DIR__ . '/config.php'),
-	    [
-	    ]
-	);
-}else{
-	return yii\helpers\ArrayHelper::merge(
-	    require(YII_APP_BASE_PATH . '/common/config/main.php'),
-	    require(YII_APP_BASE_PATH . '/backend/config/main.php'),
-	    require(dirname(__DIR__) . '/config.php'),
-	    require(dirname(__DIR__) . '/functional.php'),
-	    require(__DIR__ . '/config.php'),
-	    [
-	    ]
-	);
-}
+return yii\helpers\ArrayHelper::merge(
+    require(YII_APP_BASE_PATH . '/common/config/main.php'),
+    require(YII_APP_BASE_PATH . '/common/config/main-local.php'),
+    require(YII_APP_BASE_PATH . '/backend/config/main.php'),
+    require(YII_APP_BASE_PATH . '/backend/config/main-local.php'),
+    require(dirname(__DIR__) . '/config.php'),
+    require(dirname(__DIR__) . '/functional.php'),
+    require(__DIR__ . '/config.php'),
+    [
+    ]
+);
