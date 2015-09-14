@@ -7,6 +7,7 @@ use yii\web\Controller;
 use common\models\LoginForm;
 use yii\filters\VerbFilter;
 use dektrium\user\Finder;
+use yii\web\NotFoundHttpException;
 
 /**
  * Site controller

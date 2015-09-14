@@ -17,6 +17,23 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Country Code' => 'Codigo del Pais',
-    'model.user.resetPassword' => 'Reset password'
+    'Are you sure you want to delete this item?' => '',
+    'Cities' => '',
+    'City Code' => '',
+    'City Name' => '',
+    'Code' => '',
+    'Countries' => '',
+    'Country Code' => '',
+    'Create' => '',
+    'Create Cities' => '',
+    'Create Country' => '',
+    'Created At' => '',
+    'Delete' => '',
+    'Name' => '',
+    'Population' => '',
+    'Reset' => '',
+    'Search' => '',
+    'Update' => '',
+    'Update {modelClass}: ' => '',
+    'Updated At' => '',
 ];
