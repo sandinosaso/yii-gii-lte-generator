@@ -13,7 +13,7 @@ return [
     ],
     'components' => [
         'db' => [
-            'dsn' => 'mysql:host=localhost;dbname=demo_test',
+            'dsn' => 'mysql:host=localhost;dbname=test',
         ],
         'mailer' => [
             'useFileTransport' => true,
