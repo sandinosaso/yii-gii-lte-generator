@@ -1,4 +1,6 @@
-CREATE DATABASE IF NOT EXISTS demo_test;
+CREATE DATABASE IF NOT EXISTS test;
+
+USE test;
 
 -- phpMyAdmin SQL Dump
 -- version 4.0.10deb1
