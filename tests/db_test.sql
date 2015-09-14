@@ -125,9 +125,6 @@ CREATE TABLE IF NOT EXISTS `profile` (
 -- Volcado de datos para la tabla `profile`
 --
 
-INSERT INTO `profile` (`user_id`, `name`, `public_email`, `gravatar_email`, `gravatar_id`, `location`, `website`, `bio`) VALUES
-(4, NULL, NULL, 'sandinosaso@gmail.com', 'aefb6fd22378f4c2896f20e4f3a16eba', NULL, NULL, NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -148,9 +145,6 @@ CREATE TABLE IF NOT EXISTS `social_account` (
 --
 -- Volcado de datos para la tabla `social_account`
 --
-
-INSERT INTO `social_account` (`id`, `user_id`, `provider`, `client_id`, `data`) VALUES
-(1, 4, 'google', '107083774298897846697', '{"kind":"plus#person","etag":"\\"gLJf7LwN3wOpLHXk4IeQ9ES9mEc\\/qCuQhv45YOrN1DgHbocSBFw1uLM\\"","gender":"male","emails":[{"value":"sandinosaso@gmail.com","type":"account"}],"urls":[{"value":"https:\\/\\/profiles.google.com\\/107083774298897846697\\/buzz","type":"contributor","label":"Buzz"}],"objectType":"person","id":"107083774298897846697","displayName":"Sandino N\\u00fa\\u00f1ez Acu\\u00f1a","name":{"familyName":"N\\u00fa\\u00f1ez Acu\\u00f1a","givenName":"Sandino"},"url":"https:\\/\\/plus.google.com\\/107083774298897846697","image":{"url":"https:\\/\\/lh4.googleusercontent.com\\/-bKkhkiZr3lE\\/AAAAAAAAAAI\\/AAAAAAAAD5E\\/qu2H7b9yRIY\\/photo.jpg?sz=50","isDefault":false},"organizations":[{"name":"Universidad de la Rep\\u00fablica","type":"school","primary":true}],"placesLived":[{"value":"Montevideo","primary":true}],"isPlusUser":true,"language":"es_419","circledByCount":162,"verified":false}');
 
 -- --------------------------------------------------------
 
