@@ -48,7 +48,7 @@ return [
     'format' => 'php',
     
     // boolean, whether the message file should be overwritten with the merged messages
-    'overwrite' => false,
+    'overwrite' => true,
 
     /*
     // Message categories to ignore
