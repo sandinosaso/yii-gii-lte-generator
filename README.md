@@ -62,3 +62,5 @@ Install
 3) In project root folder run: composer install
 
 4) Run first migration to create users table: ./yii migrate 1
+
+5) ./yii migrate/up --migrationPath=@vendor/dektrium/yii2-user/migrations
